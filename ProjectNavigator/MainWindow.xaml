@@ -12,7 +12,69 @@
             <RowDefinition />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <ListBox x:Name="DevsList" ItemsSource="{Binding}">
+
+        <!--<DataGrid Grid.Row="0"
+                  x:Name="DevsList">-->
+            <DataGrid Grid.Row="0"
+                  x:Name="DevsList" ItemsSource="{Binding}" AutoGenerateColumns="False">
+        <!--<DataGrid Grid.Row="0"
+                  x:Name="DevsList" ItemsSource="{Binding Source=Dev}">-->
+            <!--<DataGrid.Columns>
+                <DataGridTextColumn Header="Разработчик" Binding="{Binding Developer}"/>
+                <DataGridTextColumn Header="Компания" Binding="{Binding FullCompanyName}"/>
+                <DataGridTextColumn Header="Контакты" Binding="{Binding Contacts}"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding DesignStatus}"/>
+                <DataGridTextColumn Header="Примеч." Binding="{Binding Note}"/>
+
+            </DataGrid.Columns>-->
+            <DataGrid.Columns>
+                <!--https://stackoverflow.com/questions/19798183/wpf-binding-in-datagrid-to-datacontext-->
+                
+                    <DataGridTemplateColumn Header="Разраб." >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Developer}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Компания" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding FullCompanyName}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Контакты" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Contacts}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Статус" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding DesignStatus}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Примеч." >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Note}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+            <!--<ListBox x:Name="DevsList" ItemsSource="{Binding}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -24,7 +86,10 @@
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-        </ListBox>
+        </ListBox>-->
+        
+        
+        
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Добавить" Margin="10" Click="Add_Click" />
             <Button Content="Изменить" Margin="10" Click="Edit_Click"  />
