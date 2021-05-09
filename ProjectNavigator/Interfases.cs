@@ -14,12 +14,7 @@ namespace ProjectNavigator
         /// <summary>
         /// ID документа.
         /// </summary>
-        string DocID { get; set; }
-
-        /// <summary>
-        /// Разработчик.
-        /// </summary>
-        string Creator { get; set; }
+       // string DocID { get; set; }
 
         /// <summary>
         /// Блок.
@@ -34,7 +29,17 @@ namespace ProjectNavigator
         /// <summary>
         /// Комплект.
         /// </summary>
-        string Set { get; set; }
+        string Pack { get; set; }
+
+        /// <summary>
+        /// Разработчик.
+        /// </summary>
+        string Dev { get; set; }
+
+        string CodePack { get; set; }
+        string NumDoc { get; set; }
+        string CodeDoc { get; set; }
+        string NameDoc { get; set; }
 
         string CustomCategory1 { get; set; }
         string CustomCategory2 { get; set; }
@@ -45,12 +50,8 @@ namespace ProjectNavigator
         /// <summary>
         /// Описание.
         /// </summary>
-        string Description { get; set; }
+        string Note { get; set; }
 
-        /// <summary>
-        /// Путь к файлу. напр. PDF.
-        /// </summary>
-        string FilePath { get; set; }
     }
 
     /// <summary>
@@ -61,45 +62,58 @@ namespace ProjectNavigator
         /// <summary>
         /// Номер  ревизии.
         /// </summary>
-        string NumberRev { get; set; }
+       // string NumberRev { get; set; }
+
+        string CodeDoc { get; set; }
 
         /// <summary>
         /// Дата передачи ревизии.
         /// </summary>
         DateTime DateRev { get; set; }
+
+        /// <summary>
+        /// Путь к файлу. PDF.
+        /// </summary>
+        string FilePathPdf { get; set; }
+
+        /// <summary>
+        /// Путь к файлу. NATIVE.
+        /// </summary>
+        string FilePathNative { get; set; }
+
     }
 
     /// <summary>
     /// Официальная ревизия.
     /// </summary>
-    interface IOfficialRevisionDoc : IDoc, IRevisionDoc
+    interface IOfficialRevisionDoc : IRevisionDoc
     {
         /// <summary>
         /// ID официальной ревизии.
         /// </summary>
-        string OfficialRevID { get; set; }
-
-        /// <summary>
-        /// Процесс по Aconnex.
-        /// </summary>
-        int Process { get; set; }
+        int ID { get; set; }
 
         /// <summary>
         /// Статус по Aconnex.
         /// </summary>
         string Status { get; set; }
 
+        /// <summary>
+        /// Процесс по Aconnex.
+        /// </summary>
+        int Process { get; set; }
+
     }
 
     /// <summary>
     /// Нефициальная ревизия.
     /// </summary>
-    interface IUnOfficialRevisionDoc : IDoc, IRevisionDoc
+    interface IUnOfficialRevisionDoc : IRevisionDoc
     {
         /// <summary>
         /// ID неофициальной ревизии.
         /// </summary>
-        string UnOfficialRevID { get; set; }
+        int ID { get; set; }
 
         /// <summary>
         /// Если TRUE, то выдана как офф.
@@ -145,4 +159,26 @@ namespace ProjectNavigator
         string Note { get; set; }
 
     }
+
+    interface IBlock
+    {
+        int ID { get; set; }
+        string BlockName { get; set; }
+        string Note { get; set; }
+    }
+
+    interface ILevel
+    {
+        int ID { get; set; }
+        string LevelName { get; set; }
+        string Note { get; set; }
+    }
+
+    interface IPack
+    {
+        int ID { get; set; }
+        string PackName { get; set; }
+        string Note { get; set; }
+    }
+
 }

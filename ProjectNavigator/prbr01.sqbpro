@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="U:/dev/ProjectNavigator/ProjectNavigator/ProjectNavigator/bin/Debug/net5.0-windows/prbr01.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure pragmas query browser" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2729"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="4" parent="0"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,6:mainblocks"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE &quot;unofficialrevs&quot; (
+	&quot;ID&quot;	INTEGER NOT NULL UNIQUE,
+	&quot;CodeDoc&quot;	TEXT NOT NULL,
+	&quot;DateRev&quot;	TEXT,
+	&quot;FilePathPdf&quot;	TEXT,
+	&quot;FilePathNative&quot;	TEXT,
+	&quot;IsOfficialRev&quot;	TEXT,
+	&quot;OfficialNumberRev&quot;	TEXT,
+	PRIMARY KEY(&quot;ID&quot; AUTOINCREMENT)
+);</sql><current_tab id="0"/></tab_sql></sqlb_project>

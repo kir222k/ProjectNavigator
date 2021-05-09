@@ -4,96 +4,335 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectNavigator" 
-        
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+    
+        <!--<Style x:Name="StyleVertTab" TargetType="{x:Type TabControl}">
+            <Setter Property="OverridesDefaultStyle" Value="False" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabControl}">
+                        <Grid KeyboardNavigation.TabNavigation="Local">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFAAAAAA" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="PART_SelectedContentHost"
+                                              Grid.Column="1"
+                                              Margin="0"
+                                              ContentSource="SelectedContent" />
+                            <StackPanel x:Name="HeaderPanel"
+                                        Grid.Row="0"
+                                        Margin="0,0,4,-1"
+                                        Panel.ZIndex="1"
+                                        Background="Transparent"
+                                        IsItemsHost="True"
+                                        KeyboardNavigation.TabIndex="1" />
+                            <Border x:Name="Border"
+                                    Grid.Row="1"
+                                    BorderThickness="1"
+                                    CornerRadius="2"
+                                    KeyboardNavigation.DirectionalNavigation="Contained"
+                                    KeyboardNavigation.TabIndex="2"
+                                    KeyboardNavigation.TabNavigation="Local" 
+                                    Background="LightGray"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid x:Name="Root">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualState x:Name="Unselected" />
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF0000FF" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" />
+                                    <VisualState x:Name="Disabled" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="Border"
+                                    Margin="0,0,0,0"
+                                    BorderBrush="Gainsboro"
+                                    BorderThickness="0,0,2,0" />
+                            <TextBlock Margin="12,10,12,10" Text="{TemplateBinding Header}">
+                                <TextBlock.LayoutTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform Angle="-90" />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </TextBlock.LayoutTransform>
+                            </TextBlock>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+   
+    </Window.Resources>
+    
+    
+    <!--ГЛАВНЫЙ ГРИД-->
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="50" />
+            <RowDefinition MinHeight="50" MaxHeight="50"/>
+            <RowDefinition/>
+            <RowDefinition MinHeight="30" MaxHeight="30"/>
         </Grid.RowDefinitions>
 
-        <!--<DataGrid Grid.Row="0"
-                  x:Name="DevsList">-->
-            <DataGrid Grid.Row="0"
-                  x:Name="DevsList" ItemsSource="{Binding}" AutoGenerateColumns="False">
-        <!--<DataGrid Grid.Row="0"
-                  x:Name="DevsList" ItemsSource="{Binding Source=Dev}">-->
-            <!--<DataGrid.Columns>
-                <DataGridTextColumn Header="Разработчик" Binding="{Binding Developer}"/>
-                <DataGridTextColumn Header="Компания" Binding="{Binding FullCompanyName}"/>
-                <DataGridTextColumn Header="Контакты" Binding="{Binding Contacts}"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding DesignStatus}"/>
-                <DataGridTextColumn Header="Примеч." Binding="{Binding Note}"/>
-
-            </DataGrid.Columns>-->
-            <DataGrid.Columns>
-                <!--https://stackoverflow.com/questions/19798183/wpf-binding-in-datagrid-to-datacontext-->
-                
-                    <DataGridTemplateColumn Header="Разраб." >
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Label Content="{Binding Developer}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-
-                    <DataGridTemplateColumn Header="Компания" >
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Content="{Binding FullCompanyName}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-                <DataGridTemplateColumn Header="Контакты" >
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Content="{Binding Contacts}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-                <DataGridTemplateColumn Header="Статус" >
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Content="{Binding DesignStatus}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-                <DataGridTemplateColumn Header="Примеч." >
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Content="{Binding Note}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-
-            </DataGrid.Columns>
-        </DataGrid>
-
-            <!--<ListBox x:Name="DevsList" ItemsSource="{Binding}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Developer}" FontSize="16" />
-                        <TextBlock Text="{Binding FullCompanyName}" FontSize="12" />
-                        <TextBlock Text="{Binding Contacts}" FontSize="13" />
-                        <TextBlock Text="{Binding DesignStatus}" FontSize="13" />
-                        <TextBlock Text="{Binding Note}" FontSize="13" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>-->
+        <!--<Menu>
+            
+            <MenuItem HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Button Content="Up" Height="50" Width="125"/>
+            </MenuItem>
+        </Menu>-->
         
         
-        
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Добавить" Margin="10" Click="Add_Click" />
-            <Button Content="Изменить" Margin="10" Click="Edit_Click"  />
-            <Button Content="Удалить" Margin="10" Click="Delete_Click"  />
-        </StackPanel>
+        <!--ТАБ ОСНОВНОЙ-->
+        <TabControl Grid.Row="1" >
+            
+            <TabItem Header="Чертежи"  RenderTransformOrigin="0.5,0.5" Height="35" FontSize="14">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="2"/>
+                        <ColumnDefinition Width="350"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <!--ДОКУМЕНТЫ-->
+                <!-- ДАННЫЕ ДОКУМЕНТА И РЕВИЗИИ-->
+                </TabItem>
+
+            <TabItem Header="Статистика"  RenderTransformOrigin="0.5,0.5" FontSize="14">
+                    <Grid>
+
+                    </Grid>
+                </TabItem>
+
+            <TabItem Header="Структура"  RenderTransformOrigin="0.5,0.5" FontSize="14">
+                <Grid>
+                    <Border  Background="LightBlue"/>
+                    <TabControl  >
+                    <!--БЛОКИ-->
+                    <TabItem  Header="Блоки" RenderTransformOrigin="0.5,0.5" >
+                        <!--<Grid>-->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="50" />
+                            </Grid.RowDefinitions>
+
+                            <!--ГРИД ДЛЯ БЛОКОВ.-->
+                            <DataGrid Grid.Row="0"
+                                        x:Name="BlocksList" ItemsSource="{Binding }" AutoGenerateColumns="False" >
+                                <DataGrid.Columns>
+
+                                    <DataGridTemplateColumn Header="Блок" >
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Label Content="{Binding BlockName}"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTemplateColumn Header="Примеч." >
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Label Content="{Binding Note}"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="Добавить" Margin="10" Click="Add_Block_Click" />
+                                <Button Content="Изменить" Margin="10" Click="Edit_Block_Click"  />
+                                <Button Content="Удалить" Margin="10" Click="Delete_Block_Click"  />
+                            </StackPanel>
+                        </Grid>
+                        <!--</Grid>-->
+                </TabItem>
+
+                <!--УРОВНИ-->
+                <TabItem Header="Уровни" RenderTransformOrigin="0.5,0.5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+
+                        <!--ГРИД ДЛЯ БЛОКОВ.-->
+                        <DataGrid Grid.Row="0"
+                                        x:Name="LevelsList" ItemsSource="{Binding }" AutoGenerateColumns="False" >
+                            <DataGrid.Columns>
+
+                                <DataGridTemplateColumn Header="Уровень" >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding LevelName}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Примеч." >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Note}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Добавить" Margin="10" Click="Add_Level_Click" />
+                            <Button Content="Изменить" Margin="10" Click="Edit_Level_Click"  />
+                            <Button Content="Удалить" Margin="10" Click="Delete_Level_Click"  />
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <!--КОМПЛЕКТЫ-->
+                <TabItem x:Name="TabPack" Header="Комплекты" RenderTransformOrigin="0.5,0.5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+
+                        <!--ГРИД ДЛЯ БЛОКОВ.-->
+                        <DataGrid Grid.Row="0"
+                                        x:Name="PacksList" ItemsSource="{Binding }" AutoGenerateColumns="False" >
+                            <DataGrid.Columns>
+
+                                <DataGridTemplateColumn Header="Комплект" >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding PackName}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Примеч." >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Note}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Добавить" Margin="10" Click="Add_Pack_Click" />
+                            <Button Content="Изменить" Margin="10" Click="Edit_Pack_Click"  />
+                            <Button Content="Удалить" Margin="10" Click="Delete_Pack_Click"  />
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <!--РАЗРАБ-->
+                <TabItem  Header="Разработчики" RenderTransformOrigin="0.5,0.5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+
+                        <!--ГРИД ДЛЯ РАЗРАБ.-->
+                        <DataGrid Grid.Row="0"
+                                        x:Name="DevsList" ItemsSource="{Binding }" AutoGenerateColumns="False" >
+                            <DataGrid.Columns>
+
+                                <DataGridTemplateColumn Header="Разраб." >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Developer}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Компания" >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding FullCompanyName}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Контакты" >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Contacts}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Статус" >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding DesignStatus}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Примеч." >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Note}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Добавить" Margin="10" Click="Add_Dev_Click" />
+                            <Button Content="Изменить" Margin="10" Click="Edit_Dev_Click"  />
+                            <Button Content="Удалить" Margin="10" Click="Delete_Dev_Click"  />
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+        </TabControl>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <StatusBar Background="LightGray" Grid.Row="2" />
     </Grid>
 </Window>

@@ -22,6 +22,9 @@ namespace ProjectNavigator
         //}
 
         public DbSet<Dev> Devs { get; set; }
+        public DbSet<Block> Blocks { get; set; }
+        public DbSet<Level> Levels { get; set; }
+        public DbSet<Pack> Packs { get; set; }
 
         //protected override void OnConfiguring(ApplicationContext optionsBuilder)
         //{
