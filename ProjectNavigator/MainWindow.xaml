@@ -99,7 +99,6 @@
    
     </Window.Resources>
     
-    
     <!--ГЛАВНЫЙ ГРИД-->
     <Grid>
         <Grid.RowDefinitions>
@@ -110,7 +109,8 @@
 
         <Menu Margin="0,0,0,1" HorizontalAlignment="Stretch" Padding="0">
             <MenuItem Header="Файл" HorizontalAlignment="Left" Margin="0">
-                <MenuItem  Name="MenuFileCreateProj" Header="Создать проект" Click="MenuFileCreateProj_Click"></MenuItem>
+                <MenuItem  
+                    x:Name="MenuFileCreateProj" Header="Создать проект" Click="MenuFileCreateProj_Click"></MenuItem>
                 <MenuItem Header="Открыть проект"></MenuItem>
                 <MenuItem Header="Сохранить проект"></MenuItem>
                 <MenuItem Header="Закрыть проект"></MenuItem>
@@ -122,7 +122,9 @@
             </MenuItem>
 
             <MenuItem Header="Настройки">
-                <MenuItem Header="Настройки проекта"></MenuItem>
+                <MenuItem x:Name="MenuSettingProjectOptions" Header="Настройки проекта" Click="MenuSettingProjectOptions_Click">   
+                    
+                </MenuItem>
                 <MenuItem Header="Выбрать базу данных"></MenuItem>
                 <MenuItem Header="Проверить данные"></MenuItem>
             </MenuItem>
@@ -292,13 +294,13 @@
                     </Grid>
                 </TabItem>
 
-            <TabItem Header="Структура"  RenderTransformOrigin="0.5,0.5" FontSize="14">
+            <!--<TabItem Header="Структура"  RenderTransformOrigin="0.5,0.5" FontSize="14">
                 <Grid>
                     <Border  Background="LightBlue"/>
                     <TabControl  >
-                    <!--БЛОКИ-->
+                    --><!--БЛОКИ--><!--
                     <TabItem  Header="Блоки" RenderTransformOrigin="0.5,0.5" >
-                        <!--<Grid>-->
+                        --><!--<Grid>--><!--
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition />
@@ -306,7 +308,7 @@
                                                "/>
                             </Grid.RowDefinitions>
 
-                            <!--ГРИД ДЛЯ БЛОКОВ.-->
+                            --><!--ГРИД ДЛЯ БЛОКОВ.--><!--
                             <DataGrid Grid.Row="0"
                                         x:Name="BlocksList" ItemsSource="{Binding }" AutoGenerateColumns="False" >
                                 <DataGrid.Columns>
@@ -336,10 +338,10 @@
                                     <Button Content="Удалить" Margin="2,2,35,2" Click="Delete_Block_Click"  />
                             </StackPanel>
                         </Grid>
-                        <!--</Grid>-->
+                        --><!--</Grid>--><!--
                 </TabItem>
 
-                    <!--УРОВНИ-->
+                    --><!--УРОВНИ--><!--
                     <TabItem Header="Уровни" RenderTransformOrigin="0.5,0.5">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -347,7 +349,7 @@
                                 <RowDefinition MaxHeight="25" MinHeight="25"/>
                             </Grid.RowDefinitions>
 
-                            <!--ГРИД ДЛЯ БЛОКОВ.-->
+                            --><!--ГРИД ДЛЯ БЛОКОВ.--><!--
                             <DataGrid Grid.Row="0"
                                             x:Name="LevelsList" ItemsSource="{Binding }" AutoGenerateColumns="False" >
                                 <DataGrid.Columns>
@@ -379,7 +381,7 @@
                         </Grid>
                     </TabItem>
 
-                    <!--КОМПЛЕКТЫ-->
+                    --><!--КОМПЛЕКТЫ--><!--
                     <TabItem x:Name="TabPack" Header="Комплекты" RenderTransformOrigin="0.5,0.5">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -387,7 +389,7 @@
                                     <RowDefinition MaxHeight="25" MinHeight="25"/>
                                 </Grid.RowDefinitions>
 
-                            <!--ГРИД ДЛЯ БЛОКОВ.-->
+                            --><!--ГРИД ДЛЯ БЛОКОВ.--><!--
                             <DataGrid Grid.Row="0"
                                             x:Name="PacksList" ItemsSource="{Binding }" AutoGenerateColumns="False" >
                                 <DataGrid.Columns>
@@ -419,7 +421,7 @@
                         </Grid>
                     </TabItem>
 
-                    <!--РАЗРАБ-->
+                    --><!--РАЗРАБ--><!--
                     <TabItem  Header="Разработчики" RenderTransformOrigin="0.5,0.5">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -427,7 +429,7 @@
                                 <RowDefinition MaxHeight="25" MinHeight="25"/>
                             </Grid.RowDefinitions>
 
-                            <!--ГРИД ДЛЯ РАЗРАБ.-->
+                            --><!--ГРИД ДЛЯ РАЗРАБ.--><!--
                             <DataGrid Grid.Row="0"
                                             x:Name="DevsList" ItemsSource="{Binding }" AutoGenerateColumns="False" >
                                 <DataGrid.Columns>
@@ -486,7 +488,8 @@
 
         </TabControl>
                 </Grid>
-            </TabItem>
+            </TabItem>-->
+            
         </TabControl>
 
         <StatusBar Background="LightGray" Grid.Row="2">

@@ -1,32 +1,23 @@
-﻿
-using System.Windows;
+﻿using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using System;
-
 
 namespace ProjectNavigator
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SettingProjectWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SettingProjectWindow : Window
     {
-        // ApplicationContext db;
-        //DbContextOptions<ApplicationContext> DbSQLiteOpt;
-
-        public MainWindow()
+        public SettingProjectWindow()
         {
             InitializeComponent();
-            /*
             UpdateDevList();
             UpdateBlockList();
             UpdateLevelList();
             UpdatePackList();
-            */
-            UpdateDocList();
         }
 
-        /*
         // РАЗРАБ
 
         // добавление
@@ -120,7 +111,7 @@ namespace ProjectNavigator
 
             if (Dev != null)
             {
-                    using (ApplicationContext db = new ApplicationContext(DbSQLiteBuilder.GetSQLiteConnectOptions()))
+                using (ApplicationContext db = new ApplicationContext(DbSQLiteBuilder.GetSQLiteConnectOptions()))
                 {
 
                     db.Devs.Remove(Dev);
@@ -378,8 +369,8 @@ namespace ProjectNavigator
         // добавление
         private void Add_Pack_Click(object sender, RoutedEventArgs e)
         {
-            
-           //this.TabPack.Header+= this.TabPack.DataContext.ToString();
+
+            //this.TabPack.Header+= this.TabPack.DataContext.ToString();
 
             PackWindow PackWindow = new PackWindow(new Pack());
             if (PackWindow.ShowDialog() == true)
@@ -494,212 +485,5 @@ namespace ProjectNavigator
             }
         }
 
-        */
-
-
-        // ДОКУМЕНТЫ
-        // добавление
-        private void Add_Doc_Click(object sender, RoutedEventArgs e)
-        {
-            DocWindow DocWindow = new DocWindow(new Doc());
-            if (DocWindow.ShowDialog() == true)
-            {
-                if ( (!String.IsNullOrEmpty(DocWindow.Doc.Block)) ||
-                    (!String.IsNullOrEmpty(DocWindow.Doc.Level)) ||
-                    (!String.IsNullOrEmpty(DocWindow.Doc.Pack)) ||
-                    (!String.IsNullOrEmpty(DocWindow.Doc.Dev)) ||
-                    (!String.IsNullOrEmpty(DocWindow.Doc.CodePack)) ||
-                    (!String.IsNullOrEmpty(DocWindow.Doc.NumDoc)) ||
-                    (!String.IsNullOrEmpty(DocWindow.Doc.CodeDoc)) ||
-                    (!String.IsNullOrEmpty(DocWindow.Doc.NameDoc))
-                    )
-                {
-
-                    Doc Doc = DocWindow.Doc;
-                    using (ApplicationContext db = new ApplicationContext(DbSQLiteBuilder.GetSQLiteConnectOptions()))
-                    {
-                        db.Docs.Add(Doc);
-                        db.SaveChanges();
-                        UpdateDocList();
-                    }
-                }
-                else
-                {
-                    NotifyWindow NotifyWindow = new NotifyWindow(new Notify { NotifyText = "Необходимо указать Разработчика!" });
-                    if (NotifyWindow.ShowDialog() == true)
-                    {
-                        this.Add_Doc_Click(sender, e);
-                    }
-                }
-            }
-        }
-        // редактирование
-        private void Edit_Doc_Click(object sender, RoutedEventArgs e)
-        {
-            // если ни одного объекта не выделено, выходим
-            if (DocsList.SelectedItem == null) return;
-            // получаем выделенный объект
-            Doc Doc = DocsList.SelectedItem as Doc;
-
-            if (Doc != null)
-            {
-                DocWindow DocWindow = new DocWindow(new Doc
-                {
-                    ID = Doc.ID,
-                    Block = Doc.Block,
-                    Level=Doc.Level,
-                    Pack=Doc.Pack,
-                    Dev=Doc.Dev,
-                    CodePack=Doc.CodePack,
-                    NumDoc=Doc.NumDoc,
-                    CodeDoc=Doc.CodeDoc,
-                    NameDoc=Doc.NameDoc,
-                    //FullCompanyName = Doc.FullCompanyName,
-                    //Contacts = Doc.Contacts,
-                    //DesignStatus = Doc.DesignStatus,
-                    Note = Doc.Note
-                });;
-
-                if (DocWindow.ShowDialog() == true)
-                {
-                    if ((!String.IsNullOrEmpty(DocWindow.Doc.Block)) ||
-                        (!String.IsNullOrEmpty(DocWindow.Doc.Level)) ||
-                        (!String.IsNullOrEmpty(DocWindow.Doc.Pack)) ||
-                        (!String.IsNullOrEmpty(DocWindow.Doc.Dev)) ||
-                        (!String.IsNullOrEmpty(DocWindow.Doc.CodePack)) ||
-                        (!String.IsNullOrEmpty(DocWindow.Doc.NumDoc)) ||
-                        (!String.IsNullOrEmpty(DocWindow.Doc.CodeDoc)) ||
-                        (!String.IsNullOrEmpty(DocWindow.Doc.NameDoc))
-                        )
-                    {
-
-                        using (ApplicationContext db = new ApplicationContext(DbSQLiteBuilder.GetSQLiteConnectOptions()))
-                        {
-                            // получаем измененный объект
-                            Doc = db.Docs.Find(DocWindow.Doc.ID);
-                            if (Doc != null)
-                            {
-                                Doc.Block = DocWindow.Doc.Block;
-                                Doc.Level = DocWindow.Doc.Level;
-                                Doc.Pack = DocWindow.Doc.Pack;
-                                Doc.Dev = DocWindow.Doc.Dev;
-                                Doc.CodePack = DocWindow.Doc.CodePack;
-                                Doc.NumDoc = DocWindow.Doc.NumDoc;
-                                Doc.CodeDoc = DocWindow.Doc.CodeDoc;
-                                Doc.NameDoc = DocWindow.Doc.NameDoc;
-                                Doc.Note = DocWindow.Doc.Note;
-                                db.Entry(Doc).State = EntityState.Modified;
-                                db.SaveChanges();
-                            }
-                        }
-                        UpdateDocList();
-                    }
-                    else
-                    {
-                        NotifyWindow NotifyWindow = new NotifyWindow(new Notify { NotifyText = "Необходимо указать Разработчика!" });
-                        if (NotifyWindow.ShowDialog() == true)
-                        {
-                            this.Add_Doc_Click(sender, e);
-                        }
-
-                    }
-                }
-            }
-        }
-        // удаление
-        private void Delete_Doc_Click(object sender, RoutedEventArgs e)
-        {
-            // если ни одного объекта не выделено, выходим
-            if (DocsList.SelectedItem == null) return;
-            // получаем выделенный объект
-            Doc Doc = DocsList.SelectedItem as Doc;
-
-            if (Doc != null)
-            {
-                using (ApplicationContext db = new ApplicationContext(DbSQLiteBuilder.GetSQLiteConnectOptions()))
-                {
-
-                    db.Docs.Remove(Doc);
-                    db.SaveChanges();
-                }
-                UpdateDocList();
-            }
-        }
-        // обновление списка
-        private void UpdateDocList()
-        {
-            using (ApplicationContext db = new ApplicationContext(DbSQLiteBuilder.GetSQLiteConnectOptions()))
-            {
-                db.Docs.Load();
-                this.DocsList.DataContext = db.Docs.Local.ToBindingList();
-                //this.DocsList.DataContext = db.Docs.Local.ToBindingList();
-            }
-        }
-
-
-        // ОФИЦИАЛЬНЫЕ. 
-        // добавление
-        private void Add_OffRev_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        // редактирование
-        private void Edit_OffRev_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        // удаление
-        private void Delete_OffRev_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
-        // НЕОФИЦИАЛЬНЫЕ.
-        // добавление
-        private void Add_UnOffRev_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        // редактирование
-        private void Edit_UnOffRev_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        // удаление
-        private void Delete_UnOffRev_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
-        private void MenuFileCreateProj_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        //  МЕНЮ - НАСТРОЙКИ ПРОЕКТА.
-        private void MenuSettingProjectOptions_Click(object sender, RoutedEventArgs e)
-        {
-            var SetPrWd = new SettingProjectWindow();
-            if (SetPrWd.ShowDialog() == true);
-
-            // //XX
-            //{
-            //    UpdateDevList();
-            //    UpdateBlockList();
-            //    UpdateLevelList();
-            //    UpdatePackList();
-            //}
-            //else
-            //{
-            //    UpdateDevList();
-            //    UpdateBlockList();
-            //    UpdateLevelList();
-            //    UpdatePackList();
-            //}
-            
-
-
-        }
     }
 }
