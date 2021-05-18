@@ -19,9 +19,34 @@ namespace ProjectNavigator
     /// </summary>
     public partial class DocWindow : Window
     {
-        public DocWindow()
+        public Doc Doc { get; private set; }
+        public DocWindow(Doc p)
         {
             InitializeComponent();
+            Doc = p;
+            this.DataContext = Doc;
+        }
+
+        private void Accept_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
         }
     }
+
+    /*
+    public Phone Phone { get; private set; }
+
+    public PhoneWindow(Phone p)
+    {
+        InitializeComponent();
+        Phone= p;
+        this.DataContext = Phone;
+    }
+
+    private void Accept_Click(object sender, RoutedEventArgs e)
+    {
+        this.DialogResult = true;
+    }
+*/
+
 }
