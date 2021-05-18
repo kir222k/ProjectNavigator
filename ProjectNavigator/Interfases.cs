@@ -14,7 +14,8 @@ namespace ProjectNavigator
         /// <summary>
         /// ID документа.
         /// </summary>
-       // string DocID { get; set; }
+        // string DocID { get; set; }
+        int ID { get; set; }
 
         /// <summary>
         /// Блок.
@@ -41,11 +42,11 @@ namespace ProjectNavigator
         string CodeDoc { get; set; }
         string NameDoc { get; set; }
 
-        string CustomCategory1 { get; set; }
-        string CustomCategory2 { get; set; }
-        string CustomCategory3 { get; set; }
-        string CustomCategory4 { get; set; }
-        string CustomCategory5 { get; set; }
+        //string CustomCategory1 { get; set; }
+        //string CustomCategory2 { get; set; }
+        //string CustomCategory3 { get; set; }
+        //string CustomCategory4 { get; set; }
+        //string CustomCategory5 { get; set; }
 
         /// <summary>
         /// Описание.
