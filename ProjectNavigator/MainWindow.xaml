@@ -122,6 +122,7 @@
             </MenuItem>
 
             <MenuItem Header="Настройки">
+                <MenuItem Header="Настройки проекта"></MenuItem>
                 <MenuItem Header="Выбрать базу данных"></MenuItem>
                 <MenuItem Header="Проверить данные"></MenuItem>
             </MenuItem>
